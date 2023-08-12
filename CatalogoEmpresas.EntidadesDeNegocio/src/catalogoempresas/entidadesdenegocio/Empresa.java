@@ -9,6 +9,7 @@ public class Empresa {
     private String categoria;
     private String departamento;
     private int top_aux;
+//    Hace referencia a la tabla Contacto
     private Contacto contacto;
 
     public Empresa() {

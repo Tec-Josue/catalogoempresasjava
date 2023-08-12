@@ -8,13 +8,13 @@ public class Contacto {
     private String email;
     private String telefono;
     private String celular;
-    private String top_aux;
+    private int top_aux;
     private ArrayList<Empresa> empresas;
 
     public Contacto() {
     }
 
-    public Contacto(int id, String nombre, String email, String telefono, String celular, String top_aux, ArrayList<Empresa> empresas) {
+    public Contacto(int id, String nombre, String email, String telefono, String celular, int top_aux, ArrayList<Empresa> empresas) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
@@ -64,11 +64,11 @@ public class Contacto {
         this.celular = celular;
     }
 
-    public String getTop_aux() {
+    public int getTop_aux() {
         return top_aux;
     }
 
-    public void setTop_aux(String top_aux) {
+    public void setTop_aux(int top_aux) {
         this.top_aux = top_aux;
     }
 

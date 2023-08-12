@@ -13,6 +13,8 @@ public class Usuario {
     private LocalDate fechaRegistro;
     private int top_aux;
     private String confirmPassword_aux;
+//    Hace referencia a la tabla Rol
+    private Rol rol;
 
     public Usuario() {
     }
@@ -44,6 +46,10 @@ public class Usuario {
 
     public void setIdRol(int idRol) {
         this.idRol = idRol;
+    }
+    public class EstatusUsuario{ 
+        public static final byte ACTIVO = 1;
+        public static final byte INACTIVO = 2;
     }
 
     public String getNombre() {
@@ -110,5 +116,10 @@ public class Usuario {
         this.confirmPassword_aux = confirmPassword_aux;
     }
     
-    
+    public Rol getRol(){
+        return rol;
+    }
+    public void setRol(Rol rol){
+        this.rol = rol;
+    }
 }
