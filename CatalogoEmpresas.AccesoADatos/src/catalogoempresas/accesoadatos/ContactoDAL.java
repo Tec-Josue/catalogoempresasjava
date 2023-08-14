@@ -39,7 +39,7 @@ public class ContactoDAL {
                 ps.setString(4, pContacto.getCelular());
                 result = ps.executeUpdate();
                 ps.close();
-            } catch (SQLException ex) {
+            } catch (SQLException ex) { 
                 throw ex;
             }
             conn.close();

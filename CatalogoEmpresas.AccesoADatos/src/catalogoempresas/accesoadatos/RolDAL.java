@@ -5,6 +5,7 @@ import java.sql.*;
 import catalogoempresas.entidadesdenegocio.*;
 
 public class RolDAL {
+//estatico significa que no necesita instancia del metodo  
     static String obtenerCampos() {
         return "r.Id, r.Nombre";
     }
@@ -21,6 +22,7 @@ public class RolDAL {
     
     private static String agregarOrderBy(Rol pRol) {
         String sql = " ORDER BY r.Id DESC";
+//                                   ASC
         if (pRol.getTop_aux() > 0 && ComunDB.TIPODB == ComunDB.TipoDB.MYSQL) {
             sql += " LIMIT " + pRol.getTop_aux() + " ";
         }
@@ -32,6 +34,7 @@ public class RolDAL {
         String sql;
         try (Connection conn = ComunDB.obtenerConexion();) { 
             sql = "INSERT INTO Rol(Nombre) VALUES(?)";
+//            ? = significa que en ese lugar hay un parametro o varios depende del cuntos signos existan
             try (PreparedStatement ps = ComunDB.createPreparedStatement(conn, sql);) {
                 ps.setString(1, pRol.getNombre());
                 result = ps.executeUpdate();
@@ -86,6 +89,8 @@ public class RolDAL {
     } 
     
     static int asignarDatosResultSet(Rol pRol, ResultSet pResultSet, int pIndex) throws Exception {
+//        Result set es una especie de tabla donde quedan almacenados los datos de la base de datosenla memoria
+//        Se ubica en la celda correspondiente y llena la propiedad  
         pIndex++;
         pRol.setId(pResultSet.getInt(pIndex));
         pIndex++;
@@ -95,7 +100,7 @@ public class RolDAL {
     
     private static void obtenerDatos(PreparedStatement pPS, ArrayList<Rol> pRoles) throws Exception {
         try (ResultSet resultSet = ComunDB.obtenerResultSet(pPS);) {
-            while (resultSet.next()) {
+            while (resultSet.next()) {  
                 Rol rol = new Rol(); 
                 asignarDatosResultSet(rol, resultSet, 0);
                 pRoles.add(rol);
@@ -155,7 +160,7 @@ public class RolDAL {
     static void querySelect(Rol pRol, ComunDB.utilQuery pUtilQuery) throws SQLException {
         PreparedStatement statement = pUtilQuery.getStatement();
         if (pRol.getId() > 0) {
-            pUtilQuery.AgregarNumWhere(" r.Id=? ");
+            pUtilQuery.AgregarNumWhere(" r.Id=? "); 
             if (statement != null) { 
                 statement.setInt(pUtilQuery.getNumWhere(), pRol.getId()); 
             }
@@ -193,6 +198,6 @@ public class RolDAL {
         catch (SQLException ex) {
             throw ex;
         }
-        return roles;
+        return roles; 
     }
 }
